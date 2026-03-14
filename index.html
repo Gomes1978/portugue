@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquino Gomes | Letras UFPB</title>
+    <style>
+        /* 
+           PALETA DE CORES 
+           Azul acadêmico: #0B3C5D
+           Dourado suave: #C8A951
+           Branco: #FFFFFF
+           Cinza claro: #F5F5F5
+        */
+        :root {
+            --primary-blue: #0B3C5D;
+            --accent-gold: #C8A951;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --text-dark: #333333;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* MAIN CONTENT AREA */
+        main {
+            margin-top: 70px;
+            min-height: calc(100vh - 140px);
+        }
+
+        .page {
+            display: none;
+            padding: 2rem 5%;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(11, 60, 93, 0.8), rgba(11, 60, 93, 0.8)), 
+                        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            background-color: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: var(--white);
+            transform: scale(1.05);
+        }
+
+        /* CARDS & GRIDS */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-blue);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-gold);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 5px solid var(--accent-gold);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .card .year {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* FORMS */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary-blue);
+        }
+
+        /* POETRY PAGE */
+        .poetry-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fffef0; /* Papel envelhecido */
+            padding: 3rem;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .poetry-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 40px;
+            height: 100%;
+            width: 1px;
+            background: rgba(200, 169, 81, 0.3);
+        }
+
+        .poem {
+            margin-bottom: 3rem;
+            font-style: italic;
+            color: #444;
+            white-space: pre-line;
+        }
+
+        .poem-title {
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-style: normal;
+        }
+
+        /* CONTACT PAGE */
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-btn {
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .instagram { background: #E1306C; color: white; }
+        .whatsapp { background: #25D366; color: white; }
+        .email { background: var(--primary-blue); color: white; }
+
+        .contact-btn:hover {
+            opacity: 0.8;
+            transform: scale(1.02);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 5%;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        footer .quote {
+            font-style: italic;
+            color: var(--accent-gold);
+            margin: 1rem 0;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-blue);
+                padding: 1rem;
+                text-align: center;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo" onclick="navigateTo('home')">Aquino Gomes | Letras UFPB</a>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <nav>
+            <ul id="nav-menu">
+                <li><a onclick="navigateTo('home')" class="nav-link active" id="link-home">Início</a></li>
+                <li><a onclick="navigateTo('about')" class="nav-link" id="link-about">Sobre</a></li>
+                <li><a onclick="navigateTo('projects')" class="nav-link" id="link-projects">Projetos</a></li>
+                <li><a onclick="navigateTo('register')" class="nav-link" id="link-register">Cadastrar Projeto</a></li>
+                <li><a onclick="navigateTo('poetry')" class="nav-link" id="link-poetry">Poesia</a></li>
+                <li><a onclick="navigateTo('contact')" class="nav-link" id="link-contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HOME PAGE -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1>Promovendo a leitura e a linguagem</h1>
+                <p>Estudante de Letras Português • UFPB</p>
+                <a onclick="navigateTo('projects')" class="btn">Ver Projetos</a>
+            </div>
+        </section>
+
+        <!-- ABOUT PAGE -->
+        <section id="about" class="page">
+            <h2 class="section-title">Sobre Mim</h2>
+            <div class="form-container">
+                <p><strong>Estudante de Letras na UFPB</strong></p>
+                <p style="margin-top: 1rem;">Sou apaixonado pela língua portuguesa e suas nuances. Atualmente, curso Letras na Universidade Federal da Paraíba, com foco em linguística e literatura.</p>
+                <p style="margin-top: 1rem;">Minha atuação é voltada para projetos educacionais, com especial interesse no incentivo à leitura e na formação de novos leitores. Acredito que a linguagem é a ferramenta mais poderosa de transformação social.</p>
+                <ul style="margin-top: 1.5rem; list-style-position: inside;">
+                    <li>Interesse em Linguística e Literatura</li>
+                    <li>Atuação em Projetos Educacionais</li>
+                    <li>Incentivo à Leitura</li>
+                    <li>Oficinas de Poesia</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PROJECTS PAGE -->
+        <section id="projects" class="page">
+            <h2 class="section-title">Projetos Acadêmicos</h2>
+            <div id="projects-grid" class="grid">
+                <!-- Projects will be loaded here -->
+            </div>
+        </section>
+
+        <!-- REGISTER PROJECT PAGE -->
+        <section id="register" class="page">
+            <h2 class="section-title">Cadastrar Novo Projeto</h2>
+            <div class="form-container">
+                <form id="project-form">
+                    <div class="form-group">
+                        <label for="title">Título do Projeto</label>
+                        <input type="text" id="title" required placeholder="Ex: Oficina de Poesia Marginal">
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Ano</label>
+                        <input type="number" id="year" required placeholder="2026">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descrição</label>
+                        <textarea id="description" rows="5" required placeholder="Descreva brevemente o projeto..."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Salvar Projeto</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- POETRY PAGE -->
+        <section id="poetry" class="page">
+            <h2 class="section-title">Espaço Literário</h2>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <button class="btn" onclick="openPoemModal()">Cadastrar Poema Autoral</button>
+            </div>
+            
+            <div id="poem-form-container" class="form-container" style="display: none; margin-bottom: 3rem;">
+                <h3 style="margin-bottom: 1rem; color: var(--primary-blue);">Novo Poema</h3>
+                <form id="poem-form">
+                    <div class="form-group">
+                        <label for="poem-title">Título</label>
+                        <input type="text" id="poem-title-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="poem-content">Versos</label>
+                        <textarea id="poem-content-input" rows="8" required></textarea>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="submit" class="btn" style="flex: 1;">Salvar</button>
+                        <button type="button" class="btn" style="flex: 1; background: #ccc;" onclick="closePoemModal()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="poetry-container" id="poetry-list">
+                <!-- Poems will be loaded here -->
+            </div>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section id="contact" class="page">
+            <h2 class="section-title">Contato</h2>
+            <div class="form-container">
+                <p style="text-align: center; margin-bottom: 2rem;">Entre em contato para parcerias, oficinas ou dúvidas acadêmicas.</p>
+                <div class="contact-links">
+                    <a href="https://instagram.com/gomes.letras" target="_blank" class="contact-btn instagram">
+                        Instagram @gomes.letras
+                    </a>
+                    <a href="https://wa.me/5583993178439" target="_blank" class="contact-btn whatsapp">
+                        WhatsApp (83) 99317-8439
+                    </a>
+                    <a href="mailto:aquinogomes2478@gmail.com" class="contact-btn email">
+                        aquinogomes2478@gmail.com
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="quote">"A leitura como um ato de liberdade."</p>
+        <p>© 2026 – Aquino Gomes</p>
+        <p>Estudante de Letras Português • Letras UFPB</p>
+    </footer>
+
+    <script>
+        // --- SPA NAVIGATION ---
+        function navigateTo(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Show target page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Update nav links
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => link.classList.remove('active'));
+            const activeLink = document.getElementById('link-' + pageId);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            // Close mobile menu if open
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.remove('show');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function toggleMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('show');
+        }
+
+        // --- DATA MANAGEMENT (LOCALSTORAGE) ---
+        
+        // Initial Data if empty
+        const initialProjects = [
+            {
+                title: "Incentivo à Leitura na Comunidade",
+                year: "2025",
+                description: "Projeto de extensão voltado para a criação de bibliotecas comunitárias em bairros periféricos de João Pessoa."
+            },
+            {
+                title: "Oficina de Poesia e Letramento",
+                year: "2024",
+                description: "Atividade prática com alunos do ensino fundamental focada na expressão poética como ferramenta de alfabetização."
+            }
+        ];
+
+        const initialPoems = [
+            {
+                title: "Versos da Paraíba",
+                content: "Onde o sol nasce primeiro\nE o verso ganha o terreiro\nA letra se faz caminho\nNo peito do brasileiro."
+            }
+        ];
+
+        // Load Projects
+        function loadProjects() {
+            const projectsGrid = document.getElementById('projects-grid');
+            let projects = JSON.parse(localStorage.getItem('projects'));
+            
+            if (!projects) {
+                projects = initialProjects;
+                localStorage.setItem('projects', JSON.stringify(projects));
+            }
+
+            projectsGrid.innerHTML = '';
+            projects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <span class="year">${project.year}</span>
+                    <h3>${project.title}</h3>
+                    <p>${project.description}</p>
+                `;
+                projectsGrid.appendChild(card);
+            });
+        }
+
+        // Save Project
+        document.getElementById('project-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('title').value;
+            const year = document.getElementById('year').value;
+            const description = document.getElementById('description').value;
+
+            const newProject = { title, year, description };
+            
+            let projects = JSON.parse(localStorage.getItem('projects')) || [];
+            projects.unshift(newProject);
+            localStorage.setItem('projects', JSON.stringify(projects));
+
+            this.reset();
+            loadProjects();
+            navigateTo('projects');
+            alert('Projeto salvo com sucesso!');
+        });
+
+        // Load Poems
+        function loadPoems() {
+            const poetryList = document.getElementById('poetry-list');
+            let poems = JSON.parse(localStorage.getItem('poems'));
+
+            if (!poems) {
+                poems = initialPoems;
+                localStorage.setItem('poems', JSON.stringify(poems));
+            }
+
+            poetryList.innerHTML = '';
+            poems.forEach(poem => {
+                const poemDiv = document.createElement('div');
+                poemDiv.className = 'poem';
+                poemDiv.innerHTML = `
+                    <h3 class="poem-title">${poem.title}</h3>
+                    <p>${poem.content}</p>
+                `;
+                poetryList.appendChild(poemDiv);
+            });
+        }
+
+        // Poem Modal Controls
+        function openPoemModal() {
+            document.getElementById('poem-form-container').style.display = 'block';
+            window.scrollTo(0, document.getElementById('poem-form-container').offsetTop - 100);
+        }
+
+        function closePoemModal() {
+            document.getElementById('poem-form-container').style.display = 'none';
+        }
+
+        // Save Poem
+        document.getElementById('poem-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('poem-title-input').value;
+            const content = document.getElementById('poem-content-input').value;
+
+            const newPoem = { title, content };
+
+            let poems = JSON.parse(localStorage.getItem('poems')) || [];
+            poems.unshift(newPoem);
+            localStorage.setItem('poems', JSON.stringify(poems));
+
+            this.reset();
+            closePoemModal();
+            loadPoems();
+            alert('Poema guardado no caderno!');
+        });
+
+        // Initialize App
+        window.onload = () => {
+            loadProjects();
+            loadPoems();
+        };
+    </script>
+</body>
+</html>
